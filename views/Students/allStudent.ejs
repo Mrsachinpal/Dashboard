@@ -1,0 +1,78 @@
+<%-include('../partials/header')%>
+  <%-include('../partials/navbar')%>
+    <%-include('../partials/flash')%>
+
+
+      <div class="container  ">
+        <div class="row text-center mx-auto">
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="row text-center ">
+                <form action="/student/filter" method="POST" class="m-5">
+                <div class="col-lg-12">
+                  <input type="date" name="startDate"> To <input type="date" name="endDate">
+                  <button class="mx-2">Filter</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12" >
+            <div class="container mt-5">
+            <form action="/student/filter/seat" method="POST">
+                <div class="dropdown">
+                  <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Show Seat
+                  </button>
+                  <ul class="dropdown-menu dropdown-checkboxes" aria-labelledby="dropdownMenuButton" style="max-height: 200px; overflow-y: auto; width: 250px; border: 1px solid #ccc; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
+                    <% for(let i = 1; i <= 42; i++) { %>
+                      <li>
+                        <label class="dropdown-item" style="font-size: small;">
+                          <input type="checkbox" name="seat" value="L-<%= i %>"> L-<%= i %>
+                        </label>
+                      </li>
+                    <% } %>
+                  </ul>
+                  <button>Check</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <table class="table mt-4 text-center">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">NAME</th>
+              <th scope="col">SEAT</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%for(let student of listofStudent){%>
+              <tr>
+                <th scope="row">
+                  <%=student.id%>
+                </th>
+                <td>
+                  <%=student.name%>
+                </td>
+                <td>
+                  <%=student.seat%>
+                </td>
+                <td>
+                  <a href="/student/<%=student._id%>"><button class="p-1">profile</button></a>
+                  <!-- <a href="/student/<%=student._id%>"><button class="p-1">Fee Status</button></a> -->
+                </td>
+              </tr>
+              <%}%> 
+          </tbody>
+          <thead>
+            <tr>
+              <th scope="col" colspan="4 " class="text-center">Total Student:<%= listofStudent.length %>
+              </th>
+            </tr>
+          </thead>    
+        </table>
+      </div>
+
+      <%-include('../partials/footer')%>

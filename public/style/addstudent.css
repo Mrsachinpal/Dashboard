@@ -1,0 +1,11 @@
+.addstudent-form-div {
+    margin: 5px;
+}   
+.addstudent-form-div label{
+font-weight: bold;    
+}
+
+input{
+    padding: 2px;
+    border-radius: 5px;
+}

@@ -1,0 +1,102 @@
+        <%-include('../partials/header') %>
+    <%-include('../partials/navbar') %>
+    <%-include('../partials/flash') %>
+
+        <h1 class="m-4">Profile  </h1>
+        <hr class="mb-5"/>
+        <form action="/student/<%=foundStudent._id%>/edit?_method=PATCH" method="POST">
+        <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="profile-img">
+                            <% if (foundStudent.uploadImage && foundStudent.uploadImage.data) { %>
+                                <p><img src="data:<%= foundStudent.uploadImage.contentType %>;base64,<%= foundStudent.uploadImage.data.toString('base64') %>" alt="Student Image" style="width:100%;height:auto;"></p>
+                            <% } %>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="profile-head">
+                            <h5>
+                               <%=foundStudent.name%>
+                            </h5>
+                            <h6>
+                               <input type="text" name="prepration_for" value="<%=foundStudent.prepration_for%>">  
+                            </h6>
+                            <p>ID : <span style="font-weight: bold;"> <%=foundStudent.id%></span></p>
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <h2>About</h2>
+                                </li>
+                            </ul>
+                            <div class="mt-3">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>User Id</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><input type="number" name="id" value="<%=foundStudent.id%>"></p>
+                                    </div>
+                                </div>
+                                <div class="row profile-about">
+                                    <div class="col-md-6">
+                                        <label>Name</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><input type="text" name="name" value="<%=foundStudent.name%>"></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Address</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><input type="text" name="address" value="<%=foundStudent.address%>"></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Phone</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><input type="text" name="phone" value="<%=foundStudent.phone%>">  </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Seat</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><input type="text" name="seat" value="<%=foundStudent.seat%>"></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Joining Date</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <%if(foundStudent.joinDate){%>
+                                            <p><b><%=foundStudent.joinDate.toLocaleDateString()%></b></p>
+                                        <%}%>                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="submit" class="btn btn-success" name="btnAddMore" value="Update Profile" />
+                    </form>
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-12">
+                        <div class="m-4">
+                            <form action="/student/<%=foundStudent._id%>?_method=DELETE" method="POST" >
+                             <button class="btn bg-danger" type="submit">Delete</button>
+                            </form>
+                         </div>
+
+                    </div>
+                </div>
+        </div>
+
+        <%-include('../partials/footer') %>

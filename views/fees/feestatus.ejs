@@ -1,0 +1,56 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+<%- include('../partials/flash') %>
+
+<div class="mx-auto text-center w-50 border rounded m-4 p-2" style="font-weight: bold;">
+    <form class="d-flex" role="search" action="/feestatusfound" method="POST">
+        <input class="form-control me-2" type="number" placeholder="User ID" name="id" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+</div>
+
+
+
+
+<div class="container">
+    <% if (foundStudent) { %>
+        <div class="container border w-25 rounded p-3 " style="height: auto; background: #dbdbdb; font-weight: bold;">
+            <div>Name: <%= foundStudent.name %></div>
+            <div>Seat: <%= foundStudent.seat %></div>
+            <div>ID: <%= foundStudent.id %></div>
+            <div>Fees: Months list
+                <div class="p-2 m-0 rounded" style="background-color: white;">  
+                <% if (Array.isArray(foundStudent.fees) && foundStudent.fees.length > 0) { %>
+                    <% foundStudent.fees.forEach(function(fee) { %>
+                              <%fee.month.forEach(function(list){%>
+                                <div><%=list%></div>
+                            <% }) %>
+                    <% }); %>
+                <% } else { %>
+                    <div></div>
+                <% } %>
+            </div>
+         
+        </div>
+        <div id="updateFeesDiv">
+            <% if (Array.isArray(foundStudent.fees) && foundStudent.fees.length > 0) { %>
+                <form action="/autofeesupdate/<%= foundStudent._id %>" method="POST" style="display: none;">
+                    <input type="text" value="" hidden>
+                    <button class="btn btn-outline-success w-100 m-2" type="submit">Update fees</button>
+                </form>
+            <% } else { %>
+                <form action="/autofeesupdate/<%= foundStudent._id %>" method="POST">
+                    <input type="text" value="" hidden>
+                    <button class="btn btn-outline-success w-100 m-2" type="submit">Update fees</button>
+                </form>
+            <% } %>
+        </div>
+        
+            <a href="/feesupdate/<%=foundStudent._id%>"><button class="btn btn-outline-success">Update</button></a>
+        </div>
+    <% } else { %>
+        <div class="alert alert-danger" role="alert">NO data found</div>
+    <% } %>
+</div>
+
+<%- include('../partials/footer') %>

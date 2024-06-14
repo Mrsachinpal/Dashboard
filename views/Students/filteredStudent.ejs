@@ -1,0 +1,38 @@
+<%-include('../partials/header')%>
+<%-include('../partials/navbar')%>
+<%-include('../partials/flash')%>
+
+
+<div class="container">
+  <h3 class="m-4">
+   show student from <%=startDate%> to <%= endDate%>
+  </h3>
+    <table class="table mt-4">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">NAME</th>
+            <th scope="col">SEAT</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%for(let student of filterstudent){%>
+          <tr>
+            <th scope="row"><%=student.id%></th>
+            <td><%=student.name%></td>
+            <td><%=student.seat%></td>
+            <td><a href="/student/<%=student._id%>"><button>profile</button></a></td>
+          </tr>
+          <%}%>
+        </tbody>
+        <thead>
+            <tr>
+              <th scope="col" colspan="4 " class="text-center">Total Student:<%= filterstudent.length %>
+              </th>
+            </tr>
+          </thead>
+      </table>
+    </div>
+
+<%-include('../partials/footer')%>

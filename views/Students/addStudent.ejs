@@ -1,0 +1,49 @@
+<%-include('../partials/header')%>
+<%-include('../partials/navbar')%>
+<%-include('../partials/flash')%>
+
+<h1 class="m-4">Add Student </h1>
+
+<form action="/student/add" method="POST" class="border w-50 p-4 mx-auto text-center" enctype="multipart/form-data">
+    <div class="container ">
+        <div class="row">
+        <div class="row addstudent-form-div ">
+            <div class="col-lg-4 col-md-4 col-sm-12"><label for="Name">Name:</label></div>
+            <div class="col-lg-8 col-md-8 col-sm-12"><input type="text" class="w-50" name="name"></div>
+        </div>
+        <div class="row addstudent-form-div">
+            <div class="col-lg-4 col-md-4 col-sm-12"><label for="Name">Phone:</label></div>
+            <div class="col-lg-8 col-md-8 col-sm-12"><input type="text" class="w-50" name="phone"></div>
+        </div>
+        <div class="row addstudent-form-div">
+            <div class="col-lg-4 col-md-4 col-sm-12"><label for="Name">Address:</label></div>
+            <div class="col-lg-8 col-md-8 col-sm-12"><input type="text" class="w-50" name="address"></div>
+        </div>
+        <div class="row addstudent-form-div">
+            <div class="col-lg-4 col-md-4 col-sm-12"><label for="Name">Joining Date:</label></div>
+            <div class="col-lg-8 col-md-8 col-sm-12"><input type="date" class="w-50" name="joinDate"></div>
+        </div>
+        <div class="row addstudent-form-div">
+            <div class="col-lg-4 col-md-4 col-sm-12"><label for="Name">ID:</label></div>
+            <div class="col-lg-8 col-md-8 col-sm-12"><input type="number" class="w-50" name="id"></div>
+        </div>
+        <div class="row addstudent-form-div">
+            <div class="col-lg-4 col-md-4 col-sm-12"><label for="Name">Seat:</label></div>
+            <div class="col-lg-8 col-md-8 col-sm-12"><input type="text" class="w-50" name="seat"></div>
+        </div>
+        <div class="row addstudent-form-div">
+            <div class="col-lg-4 col-md-4 col-sm-12"><label for="Name">Preparation for:</label></div>
+            <div class="col-lg-8 col-md-8 col-sm-12"><input type="text" class="w-50" name="prepration_for"></div>
+        </div>
+        <div class="row addstudent-form-div">
+            <div class="col-lg-4 col-md-4 col-sm-12"><label for="Name">Upload Image:</label></div>
+            <div class="col-lg-8 col-md-8 col-sm-12"><input type="file" class="w-50" name="uploadImage"></div>
+        </div>
+        <hr class="mt-3"/>
+        <button class="btn btn-primary w-50 mt-1 mx-auto">Submit</button>
+    </div> 
+    </div>
+</form>
+
+
+<%-include('../partials/footer')%>

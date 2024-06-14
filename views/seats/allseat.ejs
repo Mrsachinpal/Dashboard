@@ -1,0 +1,37 @@
+<%-include('../partials/header')%>
+    <%-include('../partials/navbar')%>
+        <%-include('../partials/flash')%>
+
+            <div class="container ">
+                <h2 class="m-4">Available seat</h2>
+                <div class="row searcarddiv">
+                    <% for (var i=1; i <=42; i++) { %>
+                        <div class="col-lg-1 col-md-2 seatcard">
+                            L-<%= i %>
+                                <% let studentFound=false; for (let student of listofStudent) { if
+                                    (student.seat===`L-${i}`) { studentFound=true; %>
+                                    <div>
+                                        <!-- Print student information here -->
+                                        <p class=" bg-danger m-0 p-0" style="font-size: small; color: white;">
+                                        Reserved
+                                        </p>
+                                        <a href="/student/<%=student._id%>"><button
+                                                class="m-1 seatshowbtn">show</button></a>
+                                    </div>
+                                    <% } } if (!studentFound) { %>
+                                        <div>
+                                            <!-- This div is empty as no student matched -->
+                                        </div>
+                                        <% } %>
+                        </div>
+                        <% } %>
+                </div>
+                <div>
+                    <p>Total Seat:<b><%=i-1 %></b> </p>
+                    <p>Reserved seat:<b><%= listofStudent.length %></b></p>
+                    <p>Available Seat:<b><%=i-1-listofStudent.length %></b></p>
+                </div>
+
+            </div>
+
+            <%-include('../partials/footer')%>

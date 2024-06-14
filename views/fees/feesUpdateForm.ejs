@@ -1,0 +1,73 @@
+<%-include('../partials/header')%>
+<%-include('../partials/navbar')%>
+<%-include('../partials/flash')%>
+
+<% if (foundStudent && foundStudent.fees && foundStudent.fees.length > 0) { %>
+    <h2 class="m-4">Update Fees </h2>
+<% } else { %>
+    <h2 class="m-4">Message  </h2>
+<% } %>
+<% if (foundStudent && foundStudent.fees && foundStudent.fees.length > 0) { %>
+    <form action="/feesupdate/<%=foundStudent.fees[0]._id%>?_method=PATCH" method="POST" class="w-50 mx-auto border p-4">
+    <input type="hidden" name="_method" value="PATCH">
+    <div class="row m-2">
+        <div class="col-lg-6 col-md-6 col-sm-12"><label for="">Name</label></div>
+        <div class="col-lg-6 col-md-6 col-sm-12"><input type="text" class="form-control" value="<%= foundStudent.name %>" disabled></div>
+    </div>
+    <div class="row m-2">
+        <div class="col-lg-6 col-md-6 col-sm-12"><label for="">User Id</label></div>
+        <div class="col-lg-6 col-md-6 col-sm-12"><input type="text" class="form-control" value="<%= foundStudent._id %>" disabled></div>
+    </div>
+    <div class="row m-2">
+        <div class="col-lg-6 col-md-6 col-sm-12"><label for="">Seat</label></div>
+        <div class="col-lg-6 col-md-6 col-sm-12"><input type="text" class="form-control" value="<%= foundStudent.seat %>" disabled></div>
+    </div>
+    <div class="row m-2">
+        <div class="col-lg-6 col-md-6 col-sm-12"><label for="">Month</label></div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                Show Month
+            </button>
+           
+                <ul class="dropdown-menu dropdown-checkboxes" aria-labelledby="dropdownMenuButton" style="max-height: 200px; overflow-y: auto; width: 250px; border: 1px solid #ccc; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
+                    <% const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; %>
+                    <% const studentMonths = new Set(foundStudent.fees.flatMap(fee => fee.month)); %>
+                    <% months.forEach(month => { %>
+                    <li>
+                        <label class="dropdown-item" style="font-size: small;">
+                            <input type="checkbox" name="month" value="<%= month %>" <%= studentMonths.has(month) ? "checked disabled" : "" %>> <%= month %>
+                        </label>
+                    </li>
+                    <% }); %>
+                </ul>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col-lg-6 col-md-6 col-sm-12"><label for="">Payment Mode</label></div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="mode" value="Cash" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Cash
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="mode" value="Online" id="flexRadioDefault2" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Online
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row m-2">
+        <button class="btn btn-success">Update fees</button>
+    </div>
+</form>
+<%}else{%>
+    <div class="alert alert-success">
+        <p><%=foundStudent.name%>'s
+        <p>Fees Form Successfully Generated <a href="/feestatus">Click here</a></p>
+    </div>
+<%}%>
+
+<%-include('../partials/footer')%>
