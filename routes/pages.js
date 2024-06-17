@@ -49,7 +49,7 @@ router.get('/students',islogin, async (req, res) => {
 })
 router.get('/student/add',islogin, (req, res) => {
     try {
-        res.render('./students/addStudent')
+        res.render('./Students/addStudent')
     } catch (e) {
         console.log(e)
     }
