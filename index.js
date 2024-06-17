@@ -9,7 +9,7 @@ const pageRoute = require('./routes/pages');
 const seatRoute = require('./routes/seats');
 const feesRoute = require('./routes/fees');
 const authRoute = require('./routes/auth');
-const Admin=require('./model/Admin');
+const Admin = require('./model/Admin');
 
 const passport = require('passport')
 const LocalStrategy = require('passport-local')
@@ -19,9 +19,10 @@ const paymentRoute = require('./routes/payment');
 
 
 
-// let URL="mongodb+srv://dashboard:KMZpDzMfCiGL1TBQ@cluster0.9klte3q.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+let URL = "mongodb+srv://sachin:sachin@cluster0.p7cma3m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 mongoose.set('strictQuery', true);
-mongoose.connect('mongodb://localhost:27017/dashboard')
+// mongoose.connect('mongodb://localhost:27017/dashboard')
+mongoose.connect(URL)
     .then(() => { console.log("DB connected") })
     .catch((err) => { console.log(err) });
 
@@ -58,11 +59,11 @@ app.use((req, res, next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     next();
-  });
+});
 
-app.use((req,res,next)=>{
-    res.locals.currentUser=req.user;
-    next();    
+app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    next();
 })
 
 
