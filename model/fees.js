@@ -10,6 +10,10 @@ const feesSchema = new mongoose.Schema({
     student: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User', 
+    },
+    payment:{
+        type:String,
+        default:"pending"
     }
 })
 let Fees = mongoose.model('Fees', feesSchema);

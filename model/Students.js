@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Fees = require('./fees');
+const Admin=require('./Admin')
 
 const studentSchema = new mongoose.Schema({
     name: {
@@ -38,7 +39,12 @@ const studentSchema = new mongoose.Schema({
     fees: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Fees'
-    }]
+    }],
+    author:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Admin'
+    }  
+
 });
 
 let students = mongoose.model('students', studentSchema);

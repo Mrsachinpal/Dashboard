@@ -1,0 +1,30 @@
+<%-include('../partials/header')%>
+    <%-include('../partials/navbar')%>
+        <%-include('../partials/flash')%>
+
+
+            <div class="container mt-5 ">
+                <h2 class="text-center mb-4">New User Registration</h2>
+                <div class="row mt-5">
+                    <div class="col-md-6 offset-md-3">
+                        <!-- Registration Form -->
+                        <form id="registrationForm" action="/admin/login" method="POST">
+                            <div class="mb-3 form-group">
+                                <label class="mb-2" for="username">Enter Username</label>
+                                <input type="text" class="form-control form-control-sm" id="username"
+                                    placeholder="Enter your username" name="username">
+                            </div>
+                            <div class="mb-3 form-group">
+                                <label class="mb-2" for="password">Password</label>
+                                <input type="password" class="form-control form-control-sm" id="password"
+                                    placeholder="Enter your passsword" name="password">
+                            </div>
+                            <div class="mb-3 ">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                        <a href="/admin/register" class="btn btn-link">Doesn't have an account?</a>
+                    </div>
+                </div>
+            </div>
+        <%-include('../partials/footer')%>

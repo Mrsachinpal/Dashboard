@@ -8,6 +8,15 @@ const session = require('express-session');
 const pageRoute = require('./routes/pages');
 const seatRoute = require('./routes/seats');
 const feesRoute = require('./routes/fees');
+const authRoute = require('./routes/auth');
+const Admin=require('./model/Admin');
+
+const passport = require('passport')
+const LocalStrategy = require('passport-local')
+
+
+const paymentRoute = require('./routes/payment');
+
 
 
 // let URL="mongodb+srv://dashboard:KMZpDzMfCiGL1TBQ@cluster0.9klte3q.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
@@ -36,6 +45,27 @@ let configSession = {
 app.use(session(configSession));
 app.use(flash());
 
+// use static authenticate method of model in LocalStrategy
+app.use(passport.initialize()); //password
+app.use(passport.session());    //password
+passport.use(new LocalStrategy(Admin.authenticate())); //password
+// use static serialize and deserialize of model for passport session support
+passport.serializeUser(Admin.serializeUser());   //password
+passport.deserializeUser(Admin.deserializeUser());   //password
+
+app.use((req, res, next) => {
+    res.locals.currentUser = req.Admin;
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    next();
+  });
+
+app.use((req,res,next)=>{
+    res.locals.currentUser=req.user;
+    next();    
+})
+
+
 app.use((req, res, next) => {
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
@@ -45,6 +75,10 @@ app.use((req, res, next) => {
 app.use(pageRoute);
 app.use(seatRoute);
 app.use(feesRoute);
+app.use(paymentRoute);
+app.use(authRoute);
+
+
 
 
 

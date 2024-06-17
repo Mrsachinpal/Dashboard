@@ -2,10 +2,10 @@
 <%-include('../partials/navbar')%>
 <%-include('../partials/flash')%>
 
-<h1 class="m-4">Add Student </h1>
-
-<form action="/student/add" method="POST" class="border w-50 p-4 mx-auto text-center" enctype="multipart/form-data">
-    <div class="container ">
+<h2 class="m-4">Add Student </h2>
+<div class="mb-3">
+<form action="/student/add" method="POST" class="border w-50 p-4 mx-auto text-center rounded"  enctype="multipart/form-data">
+    <div class="container">
         <div class="row">
         <div class="row addstudent-form-div ">
             <div class="col-lg-4 col-md-4 col-sm-12"><label for="Name">Name:</label></div>
@@ -44,6 +44,6 @@
     </div> 
     </div>
 </form>
-
+</div>
 
 <%-include('../partials/footer')%>
